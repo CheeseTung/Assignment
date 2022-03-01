@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Mar 1, 2022, 5:00:55 PM
+    Document   : sign
+    Created on : Mar 1, 2022, 5:30:15 PM
     Author     : chitung
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h4>Đăng nhập (Chủ trọ)</h4>
+        <h1>Hello World!</h1>
     </body>
 </html>

@@ -12,11 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Management of the accommodation Ty Ha</h1>
+        <h3>Management of the accommodation Ty Ha</h3>
         <div>
             <form>
                 <h4>Chủ trọ</h4>
-                <a href="login">Đăng nhập</a>
+                <a href="login">Đăng nhập</a></br>
+                <a href="sign.jsp">Đăng ký</a>
             </form>
         </div>
     </body>
