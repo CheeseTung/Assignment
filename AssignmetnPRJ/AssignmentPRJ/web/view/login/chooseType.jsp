@@ -17,7 +17,12 @@
             <form>
                 <h4>Chủ trọ</h4>
                 <a href="login">Đăng nhập</a></br>
-                <a href="sign.jsp">Đăng ký</a>
+                <a href="sign">Đăng ký</a>
+            </form>
+        </div>
+        <div>
+            <form>
+                <h4>Khách hàng</h4>
             </form>
         </div>
     </body>
