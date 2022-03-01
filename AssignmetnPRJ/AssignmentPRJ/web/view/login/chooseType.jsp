@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Mar 1, 2022, 4:46:53 PM
+    Document   : chooseType
+    Created on : Mar 1, 2022, 5:00:32 PM
     Author     : chitung
 --%>
 

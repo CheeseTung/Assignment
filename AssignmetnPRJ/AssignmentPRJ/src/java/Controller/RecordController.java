@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author chitung
  */
-public class login extends HttpServlet {
+public class RecordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +35,10 @@ public class login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet RecordController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RecordController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +56,7 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/login/choosetype.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
