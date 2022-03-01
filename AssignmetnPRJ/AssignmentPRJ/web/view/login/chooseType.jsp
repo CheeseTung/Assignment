@@ -12,6 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Management of the accommodation Ty Ha</h1>
+        <div>
+            <form>
+                <h4>Chủ trọ</h4>
+                <a href="login">Đăng nhập</a>
+            </form>
+        </div>
     </body>
 </html>

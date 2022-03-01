@@ -70,7 +70,17 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        String user = request.getParameter("username");
+//        String password = request.getParameter("password");
+//        AccountDB db = new AccountDB();
+//        Account account = db.getAccount(user, password);
+//        if(account!=null){
+//            request.getSession().setAttribute("account", account);
+//            response.getWriter().println("Login successful");
+//        }
+//        else{
+//            response.getWriter().println("Login failed");
+//        }
     }
 
     /**
