@@ -16,6 +16,14 @@
         <servlet-name>sign</servlet-name>
         <servlet-class>login.sign</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>signCustomer</servlet-name>
+        <servlet-class>login.signCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loginCustomer</servlet-name>
+        <servlet-class>login.loginCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RecordController</servlet-name>
         <url-pattern>/recordView</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>sign</servlet-name>
         <url-pattern>/sign</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>signCustomer</servlet-name>
+        <url-pattern>/signCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginCustomer</servlet-name>
+        <url-pattern>/loginCustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

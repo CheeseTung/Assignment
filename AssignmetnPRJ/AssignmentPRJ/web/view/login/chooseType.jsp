@@ -1,6 +1,6 @@
 <%-- 
     Document   : chooseType
-    Created on : Mar 1, 2022, 5:00:32 PM
+    Created on : Mar 1, 2022, 11:03:47 PM
     Author     : chitung
 --%>
 
@@ -12,17 +12,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h3>Management of the accommodation Ty Ha</h3>
+        <h3>MANAGEMENT OF THE MOTEL TỴ HÀ</h3>
         <div>
             <form>
+                
                 <h4>Chủ trọ</h4>
                 <a href="login">Đăng nhập</a></br>
                 <a href="sign">Đăng ký</a>
             </form>
         </div>
+        </br>
         <div>
             <form>
                 <h4>Khách hàng</h4>
+                <a href="loginCustomer">Đăng nhập</a></br>
+                <a href="signCustomer">Đăng ký</a>
             </form>
         </div>
     </body>

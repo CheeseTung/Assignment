@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author chitung
  */
-public class sign extends HttpServlet {
+public class loginCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +35,10 @@ public class sign extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet sign</title>");            
+            out.println("<title>Servlet loginCustomer</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet sign at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet loginCustomer at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +56,7 @@ public class sign extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/login/sign.jsp").forward(request, response);
+        request.getRequestDispatcher("view/login/loginCustomer.jsp").forward(request, response);
     }
 
     /**
