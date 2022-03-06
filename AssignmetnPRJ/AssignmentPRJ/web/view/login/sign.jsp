@@ -12,6 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3>Sign out (Admin)</h3>
+        <form action="sign" method="POST">
+            Username: <input type="text" name="username" /> <br/>
+            Password: <input type="text" name="password" /><br/>
+            Display Name: <input type="text" name="displayName" /><br/>
+            <input type="submit" value="Sign out" /> 
+            <h4 style="color: red">${requestScope.exist}</h4>
+        </form>
     </body>
 </html>

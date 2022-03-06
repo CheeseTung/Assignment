@@ -37,7 +37,7 @@ public class login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet login</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
@@ -58,7 +58,7 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.getRequestDispatcher("view/login/login.jsp").forward(request, response);
+        request.getRequestDispatcher("view/login/login.jsp").forward(request, response);
     }
 
     /**
@@ -76,10 +76,10 @@ public class login extends HttpServlet {
         String password = request.getParameter("password");
         HostAccountDBContext HAccountDB = new HostAccountDBContext();
         hostAccount hostAccount = HAccountDB.getHostAccount(user, password);
-        if(hostAccount != null){
+        if (hostAccount != null) {
             request.getSession().setAttribute("hostAccount", hostAccount);
             response.sendRedirect("homePage");
-        }else{
+        } else {
             String loginFailed = "User name or password word is incorrect !";
             request.setAttribute("loginFailed", loginFailed);
             request.getRequestDispatcher("view/login/login.jsp").forward(request, response);

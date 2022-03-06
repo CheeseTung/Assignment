@@ -5,12 +5,14 @@
  */
 package login;
 
+import dal.HostAccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.hostAccount;
 
 /**
  *
@@ -70,6 +72,32 @@ public class sign extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String raw_username = request.getParameter("username");
+        String raw_password = request.getParameter("password");
+        String raw_displayName = request.getParameter("displayName");
+        
+        String username = raw_username; //check username
+        String password = raw_password; //check password
+        String displayName = raw_displayName; //check displayName
+        
+        hostAccount ha = new hostAccount();
+        ha.setUsername(username);
+        ha.setPassword(password);
+        ha.setDisplayname(displayName);
+        
+        
+        HostAccountDBContext haDB = new HostAccountDBContext();
+        hostAccount haExist = haDB.getHostAccount(username, password);
+        if(haExist == null){
+            haDB.insertHostAccount(ha);
+//            response.sendRedirect(password); //send to home page
+response.getWriter().println("succesfull");
+        }else{
+            String exist = "This account is already exist! Please try again ";
+            request.setAttribute("exist", exist);
+            request.getRequestDispatcher("view/login/sign.jsp").forward(request, response);
+        }
+        
         
     }
 
