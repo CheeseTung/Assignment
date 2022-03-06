@@ -13,8 +13,8 @@
     </head>
     <body>
         <h3>MANAGEMENT OF THE MOTEL TỴ HÀ</h3>
-        <div>
-            <form>
+        <div >
+            <form border="solid">
                 
                 <h4>Chủ trọ</h4>
                 <a href="login">Đăng nhập</a></br>
@@ -23,7 +23,7 @@
         </div>
         </br>
         <div>
-            <form>
+            <form border="solid">
                 <h4>Khách hàng</h4>
                 <a href="loginCustomer">Đăng nhập</a></br>
                 <a href="signCustomer">Đăng ký</a>

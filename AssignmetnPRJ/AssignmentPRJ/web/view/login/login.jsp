@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3>Đăng nhập (Chủ trọ)</h3>
+        
     </body>
 </html>
