@@ -25,8 +25,7 @@
         <div>
             <form border="solid">
                 <h4>Khách hàng</h4>
-                <a href="loginCustomer">Đăng nhập</a></br>
-                <a href="signCustomer">Đăng ký</a>
+                <a href="loginCustomer">Đăng nhập</a>
             </form>
         </div>
     </body>
