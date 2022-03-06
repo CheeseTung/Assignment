@@ -19,7 +19,7 @@ import model.customerAccount;
 public class CustomerAccountDBContext extends DBContext{
      public customerAccount getCustomerAccount(String username, String password){
         try {
-            String sql = "SELECT username,password,displayname,number,address,dob FROM HostAccount WHERE username = ? AND password = ?";
+            String sql = "SELECT username,password,displayname,number,address,dob FROM CustomerAccount WHERE username = ? AND password = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
