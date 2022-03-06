@@ -5,12 +5,14 @@
  */
 package login;
 
+import dal.HostAccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.hostAccount;
 
 /**
  *
@@ -70,7 +72,18 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String user = request.getParameter("username");
+        String password = request.getParameter("password");
+        HostAccountDBContext HAccountDB = new HostAccountDBContext();
+        hostAccount hostAccount = HAccountDB.getHostAccount(user, password);
+        if(hostAccount != null){
+            request.getSession().setAttribute("hostAccount", hostAccount);
+            response.sendRedirect("homePage");
+        }else{
+            String loginFailed = "User name or password word is incorrect !";
+            request.setAttribute("loginFailed", loginFailed);
+            request.getRequestDispatcher("view/login/login.jsp").forward(request, response);
+        }
     }
 
     /**

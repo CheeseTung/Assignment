@@ -36,4 +36,44 @@ public class HostAccountDBContext extends DBContext{
         }
         return null;
     }
+    
+    public void insertHostAccount(hostAccount ha){
+        String sql = "INSERT INTO [HostAccount]\n" +
+                     "           ([username]\n" +
+                     "           ,[password]\n" +
+                     "           ,[displayname])\n" +
+                     "     VALUES\n" +
+                     "           (?,\n" +
+                     "           ,?\n" +
+                     "           ,?)";
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, ha.getUsername());
+            stm.setString(2, ha.getPassword());
+            stm.setString(3, ha.getDisplayname());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(HostAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                finally
+        {
+            if(stm != null)
+            {
+                try {
+                    stm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(HostAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(connection !=null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(HostAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
 }

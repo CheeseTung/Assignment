@@ -16,16 +16,16 @@
         <div >
             <form border="solid">
                 
-                <h4>Chủ trọ</h4>
-                <a href="login">Đăng nhập</a></br>
-                <a href="sign">Đăng ký</a>
+                <h4>Admin</h4>
+                <a href="login">Sign in</a></br>
+                <a href="sign">Sign out</a>
             </form>
         </div>
         </br>
         <div>
             <form border="solid">
-                <h4>Khách hàng</h4>
-                <a href="loginCustomer">Đăng nhập</a>
+                <h4>Customer</h4>
+                <a href="loginCustomer">Login</a>
             </form>
         </div>
     </body>
