@@ -5,6 +5,8 @@
  */
 package login;
 
+import Valid.CheckValidLogin;
+import static Valid.CheckValidLogin.inputString;
 import dal.HostAccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -90,7 +92,7 @@ public class sign extends HttpServlet {
         hostAccount haExist = haDB.getHostAccount(username, password);
         if(haExist == null){
             haDB.insertHostAccount(ha);
-            response.sendRedirect("homePage"); //send to home page
+            response.sendRedirect("HomeAdmin"); //send to home page
         }else{
             String exist = "This account is already exist! Please try again ";
             request.setAttribute("exist", exist);

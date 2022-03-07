@@ -24,6 +24,14 @@
         <servlet-name>loginCustomer</servlet-name>
         <servlet-class>login.loginCustomer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeAdmin</servlet-name>
+        <servlet-class>HomePage.HomeAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeCustomer</servlet-name>
+        <servlet-class>HomePage.HomeCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RecordController</servlet-name>
         <url-pattern>/recordView</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>loginCustomer</servlet-name>
         <url-pattern>/loginCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeAdmin</servlet-name>
+        <url-pattern>/HomeAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeCustomer</servlet-name>
+        <url-pattern>/HomeCustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

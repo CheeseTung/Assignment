@@ -6,24 +6,34 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.hostAccount;
+import model.customerAccount;
 
 /**
  *
  * @author chitung
  */
-public abstract class BaseAuthenticationController extends HttpServlet {
+public abstract class BaseLoginCustomer extends HttpServlet {
 
-    private boolean isAuthenticated(HttpServletRequest request) {
+        private boolean isAuthenticated(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        hostAccount hostAccount = (hostAccount) session.getAttribute("hostAccount");
-        return hostAccount != null;
+        customerAccount customerAccount = (customerAccount) session.getAttribute("customerAccount");
+        return customerAccount != null;
     }
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -37,14 +47,14 @@ public abstract class BaseAuthenticationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (isAuthenticated(request)) {
+                if (isAuthenticated(request)) {
             processGet(request, response);
         } else {
             response.getWriter().println("Access denied");
         }
     }
 
-    protected abstract void processGet(HttpServletRequest request, HttpServletResponse response)
+        protected abstract void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException;
 
     protected abstract void processPost(HttpServletRequest request, HttpServletResponse response)

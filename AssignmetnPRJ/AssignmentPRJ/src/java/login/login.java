@@ -78,7 +78,7 @@ public class login extends HttpServlet {
         hostAccount hostAccount = HAccountDB.getHostAccount(user, password);
         if (hostAccount != null) {
             request.getSession().setAttribute("hostAccount", hostAccount);
-            response.sendRedirect("homePage");
+            response.sendRedirect("HomeAdmin");
         } else {
             String loginFailed = "User name or password word is incorrect !";
             request.setAttribute("loginFailed", loginFailed);

@@ -5,12 +5,14 @@
  */
 package login;
 
+import dal.CustomerAccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.customerAccount;
 
 /**
  *
@@ -70,7 +72,18 @@ public class loginCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String user = request.getParameter("username");
+        String password = request.getParameter("password");
+        CustomerAccountDBContext CAccountDB = new CustomerAccountDBContext();
+        customerAccount customerAccount = CAccountDB.getCustomerAccount(user, password);
+        if (customerAccount != null) {
+            request.getSession().setAttribute("customerAccount", customerAccount);
+            response.sendRedirect("HomeCustomer");
+        } else {
+            String loginFailed = "User name or password word is incorrect !";
+            request.setAttribute("loginFailed", loginFailed);
+            request.getRequestDispatcher("view/login/loginCustomer.jsp").forward(request, response);
+        }
     }
 
     /**

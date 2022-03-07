@@ -5,12 +5,15 @@
  */
 package login;
 
+import dal.CustomerAccountDBContext;
+import dal.HostAccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.customerAccount;
 
 /**
  *
@@ -70,7 +73,36 @@ public class signCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String raw_username = request.getParameter("username");
+        String raw_password = request.getParameter("password");
+        String raw_displayName = request.getParameter("displayName");
+        String raw_number = request.getParameter("number");
+        String raw_address = request.getParameter("address");
+        
+        String username = raw_username; //check username
+        String password = raw_password; //check password
+        String displayName = raw_displayName; //check displayName
+        String number = raw_number;
+        String address = raw_address;
+        
+        customerAccount ca = new customerAccount();
+        ca.setUsername(username);
+        ca.setPassword(password);
+        ca.setDisplayname(displayName);
+        ca.setNumber(number);
+        ca.setAddress(address);
+        
+        
+        CustomerAccountDBContext caDB = new CustomerAccountDBContext();
+        customerAccount caExist = caDB.getCustomerAccount(username, password);
+        if(caExist == null){
+            caDB.insertCustomerAccount(ca);
+            response.sendRedirect("HomeCustomer"); //send to home page
+        }else{
+            String exist = "This account is already exist! Please try again ";
+            request.setAttribute("exist", exist);
+            request.getRequestDispatcher("view/login/signCustomer.jsp").forward(request, response);
+        }
     }
 
     /**
