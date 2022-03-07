@@ -43,7 +43,7 @@ public class HostAccountDBContext extends DBContext{
                      "           ,[password]\n" +
                      "           ,[displayname])\n" +
                      "     VALUES\n" +
-                     "           (?,\n" +
+                     "           (?\n" +
                      "           ,?\n" +
                      "           ,?)";
         PreparedStatement stm = null;
@@ -56,24 +56,27 @@ public class HostAccountDBContext extends DBContext{
         } catch (SQLException ex) {
             Logger.getLogger(HostAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-                finally
-        {
-            if(stm != null)
-            {
+          finally {
+            if (stm != null) {
                 try {
                     stm.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(HostAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if(connection !=null)
-            {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(HostAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(HostAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+
         }
     }
 }

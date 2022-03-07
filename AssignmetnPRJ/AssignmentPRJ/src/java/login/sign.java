@@ -90,8 +90,7 @@ public class sign extends HttpServlet {
         hostAccount haExist = haDB.getHostAccount(username, password);
         if(haExist == null){
             haDB.insertHostAccount(ha);
-//            response.sendRedirect(password); //send to home page
-response.getWriter().println("succesfull");
+            response.sendRedirect("homePage"); //send to home page
         }else{
             String exist = "This account is already exist! Please try again ";
             request.setAttribute("exist", exist);
