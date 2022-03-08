@@ -15,6 +15,7 @@
     </head>
     <body>
         <h3>MANAGEMENT OF THE MOTEL TỴ HÀ</h3><br/>
+        
         <a>Sign out customer account</a><br/>
         <a>Edit bill</a><br/>
         <a>Set notification for customer</a>

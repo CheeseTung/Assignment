@@ -16,6 +16,8 @@
     <body>
         <h3>TỴ HÀ MOTEL</h3><br/>
         <a>View Bill</a><br/>
+        
+        
         <h3>${requestScope.notification.alert}</h3>
     </body>
 </html>
