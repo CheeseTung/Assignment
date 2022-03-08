@@ -14,16 +14,15 @@
     <body>
         <h3>MANAGEMENT OF THE MOTEL TỴ HÀ</h3>
         <div >
-            <form border="solid">
+            <form style="border: solid">
                 
                 <h4>Admin</h4>
                 <a href="login">Sign in</a></br>
-                <a href="sign">Sign out</a>
             </form>
         </div>
         </br>
         <div>
-            <form border="solid">
+            <form style="border: solid">
                 <h4>Customer</h4>
                 <a href="loginCustomer">Login</a>
             </form>

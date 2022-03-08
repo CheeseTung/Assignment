@@ -5,18 +5,20 @@
  */
 package Controller;
 
+import dal.NotificationDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Notification;
 
 /**
  *
  * @author chitung
  */
-public class RecordController extends HttpServlet {
+public class SetNotification extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +37,10 @@ public class RecordController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RecordController</title>");            
+            out.println("<title>Servlet SetNotification</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RecordController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SetNotification at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -54,9 +56,9 @@ public class RecordController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("view/action/setNotification.jsp").forward(request, response);
     }
 
     /**
@@ -68,9 +70,14 @@ public class RecordController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        NotificationDBContext nDB = new NotificationDBContext();
+        String alert = request.getParameter("alert");
+        Notification n = new Notification();
+        n.setAlert(alert);
+        nDB.updateNotification(n);
+        response.sendRedirect("HomeAdmin");
     }
 
     /**

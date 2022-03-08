@@ -5,6 +5,7 @@
  */
 package login;
 
+import Controller.BaseAuthenticationController;
 import dal.CustomerAccountDBContext;
 import dal.HostAccountDBContext;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import model.customerAccount;
  *
  * @author chitung
  */
-public class signCustomer extends HttpServlet {
+public class signCustomer extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,7 +58,7 @@ public class signCustomer extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("view/login/signCustomer.jsp").forward(request, response);
     }
@@ -71,7 +72,7 @@ public class signCustomer extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String raw_username = request.getParameter("username");
         String raw_password = request.getParameter("password");

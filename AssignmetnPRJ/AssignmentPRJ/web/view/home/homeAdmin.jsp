@@ -20,6 +20,6 @@
         <br/>
         <a>Edit bill</a><br/>
         <br/>
-        <a>Set notification for customer</a>
+        <a href="SetNotification">Set notification for customer</a>
     </body>
 </html>
