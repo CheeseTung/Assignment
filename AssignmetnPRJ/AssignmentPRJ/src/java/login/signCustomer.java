@@ -97,7 +97,7 @@ public class signCustomer extends HttpServlet {
         customerAccount caExist = caDB.getCustomerAccount(username, password);
         if(caExist == null){
             caDB.insertCustomerAccount(ca);
-            response.sendRedirect("HomeCustomer"); //send to home page
+            response.sendRedirect("HomeAdmin"); //send to home page
         }else{
             String exist = "This account is already exist! Please try again ";
             request.setAttribute("exist", exist);

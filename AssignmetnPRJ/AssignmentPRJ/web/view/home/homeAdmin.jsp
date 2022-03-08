@@ -15,9 +15,11 @@
     </head>
     <body>
         <h3>MANAGEMENT OF THE MOTEL TỴ HÀ</h3><br/>
-        
-        <a>Sign out customer account</a><br/>
+        <h4>Wellcome ${requestScope.hostAccount.displayname}</h4><br/>
+        <a href="signCustomer">Sign out customer account</a><br/>
+        <br/>
         <a>Edit bill</a><br/>
+        <br/>
         <a>Set notification for customer</a>
     </body>
 </html>
