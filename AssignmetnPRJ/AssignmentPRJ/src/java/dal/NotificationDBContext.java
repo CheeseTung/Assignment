@@ -19,23 +19,23 @@ import model.Notification;
  */
 public class NotificationDBContext extends DBContext {
 
-    public ArrayList<Notification> getNotification() {
-        ArrayList<Notification> alerts = new ArrayList();
+    public Notification getNotification() {
         try {
-            String sql = "SELECT [alert]\n"
-                    + "  FROM [Notification]";
-            PreparedStatement stm;
-            stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
+            String sql = "SELECT [id]\n"
+                    + "      ,[alert]\n"
+                    + "  FROM [Notificaiton]";
+            PreparedStatement stm = connection.prepareStatement(sql);     
+            ResultSet rs = stm.executeQuery();            
+            if (rs.next()) {
                 Notification n = new Notification();
+                n.setId(rs.getInt("id"));
                 n.setAlert(rs.getString("alert"));
-                alerts.add(n);
+                return n;
             }
         } catch (SQLException ex) {
             Logger.getLogger(NotificationDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return alerts;
+        return null;
     }
 
     public void updateNotification(Notification n) {

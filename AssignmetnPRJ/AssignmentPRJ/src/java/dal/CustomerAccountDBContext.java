@@ -20,7 +20,7 @@ public class CustomerAccountDBContext extends DBContext {
 
     public customerAccount getCustomerAccount(String username, String password) {
         try {
-            String sql = "SELECT username,password,displayname,number,address,dob FROM CustomerAccount WHERE username = ? AND password = ?";
+            String sql = "SELECT username,password,displayname,number,address FROM CustomerAccount WHERE username = ? AND password = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
@@ -32,11 +32,10 @@ public class CustomerAccountDBContext extends DBContext {
                 ca.setDisplayname(rs.getString("displayname"));
                 ca.setNumber(rs.getString("number"));;
                 ca.setAddress(rs.getString("address"));
-                ca.setDob(rs.getDate("dob"));
                 return ca;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(HostAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerAccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

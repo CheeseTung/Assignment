@@ -9,6 +9,7 @@ import dal.HostAccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -78,6 +79,15 @@ public class login extends HttpServlet {
         hostAccount hostAccount = HAccountDB.getHostAccount(user, password);
         if (hostAccount != null) {
             request.getSession().setAttribute("hostAccount", hostAccount);
+            String remember = request.getParameter("remember");
+                        if (remember != null) {
+                Cookie c_user = new Cookie("username", user);
+                Cookie c_pass = new Cookie("password", password);
+                c_user.setMaxAge(24 * 3600 * 7);
+                c_pass.setMaxAge(24 * 3600 * 7);
+                response.addCookie(c_user);
+                response.addCookie(c_pass);
+            }
             response.sendRedirect("HomeAdmin");
         } else {
             String loginFailed = "User name or password word is incorrect !";

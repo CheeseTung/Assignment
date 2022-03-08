@@ -9,6 +9,7 @@ import dal.CustomerAccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -78,6 +79,15 @@ public class loginCustomer extends HttpServlet {
         customerAccount customerAccount = CAccountDB.getCustomerAccount(user, password);
         if (customerAccount != null) {
             request.getSession().setAttribute("customerAccount", customerAccount);
+                        String remember = request.getParameter("remember");
+                        if (remember != null) {
+                Cookie c_user = new Cookie("username", user);
+                Cookie c_pass = new Cookie("password", password);
+                c_user.setMaxAge(24 * 3600 * 7);
+                c_pass.setMaxAge(24 * 3600 * 7);
+                response.addCookie(c_user);
+                response.addCookie(c_pass);
+            }
             response.sendRedirect("HomeCustomer");
         } else {
             String loginFailed = "User name or password word is incorrect !";

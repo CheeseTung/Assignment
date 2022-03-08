@@ -17,7 +17,6 @@ public class customerAccount {
     private String displayname;
     private String number;
     private String address;
-    private Date dob;
 
     public String getUsername() {
         return username;
@@ -57,14 +56,6 @@ public class customerAccount {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
     }
     
 }

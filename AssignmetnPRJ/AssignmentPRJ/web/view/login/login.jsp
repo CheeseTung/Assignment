@@ -17,7 +17,8 @@
         <h3>Login (Admin)</h3>
         <form action="login" method="POST">
             Username: <input type="text" name="username" /> <br/>
-            Password: <input type="text" name="password" /><br/>
+            Password: <input type="password" name="password" /><br/>
+            <input type="checkbox" value="remember" name="remember"/> Remember Me! <br/>
             <input type="submit" value="Sign in" /> 
             <h5 style="color: red">${requestScope.loginFailed}</h5> 
         </form>

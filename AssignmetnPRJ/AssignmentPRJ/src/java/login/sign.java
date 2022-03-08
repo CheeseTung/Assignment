@@ -5,8 +5,6 @@
  */
 package login;
 
-import Valid.CheckValidLogin;
-import static Valid.CheckValidLogin.inputString;
 import dal.HostAccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;

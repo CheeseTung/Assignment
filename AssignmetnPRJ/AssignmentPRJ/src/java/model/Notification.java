@@ -11,6 +11,7 @@ package model;
  */
 public class Notification {
     private String alert;
+    private int id;
 
     public String getAlert() {
         return alert;
@@ -18,6 +19,14 @@ public class Notification {
 
     public void setAlert(String alert) {
         this.alert = alert;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }
