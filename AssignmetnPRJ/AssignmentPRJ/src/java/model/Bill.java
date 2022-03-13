@@ -16,7 +16,7 @@ public class Bill {
     private Room room = new Room();
     private Payment payment = new Payment();
     private int roomCharge;
-    private ElectricBill electric = new ElectricBill();
+    private int electricMoney;
     private int waterMoney,networkMoney,cleanerMoney,waterDrink;
     private String status;
     private int shortMoney;
@@ -54,14 +54,6 @@ public class Bill {
         this.roomCharge = roomCharge;
     }
 
-    public ElectricBill getElectric() {
-        return electric;
-    }
-
-    public void setElectric(ElectricBill electric) {
-        this.electric = electric;
-    }
-
     public int getWaterMoney() {
         return waterMoney;
     }
@@ -92,6 +84,14 @@ public class Bill {
 
     public void setWaterDrink(int waterDrink) {
         this.waterDrink = waterDrink;
+    }
+
+    public int getElectricMoney() {
+        return electricMoney;
+    }
+
+    public void setElectricMoney(int electricMoney) {
+        this.electricMoney = electricMoney;
     }
 
     public String getStatus() {

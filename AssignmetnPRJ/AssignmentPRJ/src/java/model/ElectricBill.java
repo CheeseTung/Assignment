@@ -11,6 +11,7 @@ package model;
  */
 public class ElectricBill {
     private int id, price, count;
+    private Bill bill = new Bill();
 
     public int getId() {
         return id;
@@ -34,6 +35,14 @@ public class ElectricBill {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
     
 }

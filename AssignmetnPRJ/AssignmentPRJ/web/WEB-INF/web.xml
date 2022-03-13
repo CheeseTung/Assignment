@@ -32,6 +32,18 @@
         <servlet-name>SetNotification</servlet-name>
         <servlet-class>Controller.SetNotification</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BillController</servlet-name>
+        <servlet-class>Controller.Bill.BillController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditBill</servlet-name>
+        <servlet-class>Controller.Bill.EditBill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBill</servlet-name>
+        <servlet-class>Controller.Bill.DeleteBill</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>chooseType</servlet-name>
         <url-pattern>/chooseType</url-pattern>
@@ -63,6 +75,18 @@
     <servlet-mapping>
         <servlet-name>SetNotification</servlet-name>
         <url-pattern>/SetNotification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillController</servlet-name>
+        <url-pattern>/BillController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditBill</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBill</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

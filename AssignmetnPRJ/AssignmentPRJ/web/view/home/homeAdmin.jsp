@@ -18,7 +18,7 @@
         <h4>Wellcome ${requestScope.hostAccount.displayname}</h4><br/>
         <a href="signCustomer">Sign out customer account</a><br/>
         <br/>
-        <a>Edit bill</a><br/>
+        <a href="BillController">Edit bill</a><br/>
         <br/>
         <a href="SetNotification">Set notification for customer</a>
     </body>
