@@ -16,9 +16,9 @@
     <body>
         <h3>TỴ HÀ MOTEL</h3><br/>
         <h4>Wellcome ${requestScope.customerAccount.displayname}</h4><br/>
-        <a>View Bill</a><br/>
+        <a href="searchCustomer" >View Bill</a><br/>
         
         
-        <h3>${requestScope.notification.alert}</h3>
+        <h3 style="border: 1px solid">${requestScope.notification.alert}</h3>
     </body>
 </html>

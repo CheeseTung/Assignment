@@ -38,7 +38,7 @@ public class BillDBContext extends DBContext {
                     + ",b.[short_money]\n"
                     + ",b.[fromDate]\n"
                     + ",b.[toDate]\n"
-                    + ",(b.room_charge + (eB.[count] * eB.price) + b.network_money + b.water_money + b.cleaner_money + b.water_drink - b.short_money) as totalPrice\n"
+                    + ",(b.room_charge + (eB.[count] * eB.price) + b.network_money + b.water_money + b.cleaner_money + b.water_drink + b.short_money) as totalPrice\n"
                     + "FROM [Bill] b inner join Room r on b.room_id = r.room_id\n"
                     + "inner join Payment p on b.payment_id = p.id\n"
                     + "inner join ElectricBill eB on b.id = eB.bill_id";

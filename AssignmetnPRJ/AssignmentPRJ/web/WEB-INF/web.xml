@@ -44,6 +44,10 @@
         <servlet-name>DeleteBill</servlet-name>
         <servlet-class>Controller.Bill.DeleteBill</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>searchCustomer</servlet-name>
+        <servlet-class>Controller.Bill.searchCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>chooseType</servlet-name>
         <url-pattern>/chooseType</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>DeleteBill</servlet-name>
         <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchCustomer</servlet-name>
+        <url-pattern>/searchCustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
