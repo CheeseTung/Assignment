@@ -3,26 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Bill;
+package Controller.Contract;
 
-import Controller.BaseAuthenticationController;
-import dal.BillDBContext;
-import dal.PaymentDBContext;
+import dal.ContractDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Bill;
-import model.Payment;
+import model.Contract;
 
 /**
  *
  * @author chitung
  */
-public class EditBill extends BaseAuthenticationController {
+public class ViewContract extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +37,10 @@ public class EditBill extends BaseAuthenticationController {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditBill</title>");            
+            out.println("<title>Servlet ViewContract</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditBill at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ViewContract at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,13 +56,13 @@ public class EditBill extends BaseAuthenticationController {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int billId = Integer.parseInt(request.getParameter("id"));
-        BillDBContext bDB = new BillDBContext();
-        Bill bill = bDB.getBill(billId);
-        request.setAttribute("bill", bill);
-        request.getRequestDispatcher("view/action/edit.jsp").forward(request, response);
+        String roomName = request.getParameter("name");
+        ContractDBContext cDB = new ContractDBContext();
+        Contract contract = cDB.getContract(roomName);
+        request.setAttribute("contract", contract);
+        request.getRequestDispatcher("view/contract/viewContract.jsp").forward(request, response);
     }
 
     /**
@@ -78,30 +74,9 @@ public class EditBill extends BaseAuthenticationController {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int roomCharge = Integer.parseInt(request.getParameter("roomCharge"));
-        int waterMoney = Integer.parseInt(request.getParameter("waterMoney"));
-        int networkMoney = Integer.parseInt(request.getParameter("networkMoney"));
-        int cleanerMoney = Integer.parseInt(request.getParameter("cleanerMoney"));
-        int waterDrink = Integer.parseInt(request.getParameter("waterDrink"));
-        int shortMonet = Integer.parseInt(request.getParameter("shortMoney"));
-        String status = request.getParameter("status");
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        Bill b = new Bill();
-        b.setId(id);
-        b.setRoomCharge(roomCharge);
-        b.setWaterMoney(waterMoney);
-        b.setNetworkMoney(networkMoney);
-        b.setCleanerMoney(cleanerMoney);
-        b.setWaterDrink(waterDrink);
-        b.setShortMoney(shortMonet);
-        b.setStatus(status);
-        
-        BillDBContext bDB = new BillDBContext();
-        bDB.updateBill(b);
-        response.sendRedirect("BillController");
+        processRequest(request, response);
     }
 
     /**

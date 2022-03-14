@@ -76,22 +76,22 @@ public class BillDBContext extends DBContext {
     public Bill getBill(int billID) {
         try {
             String sql = "SELECT b.[id]\n"
-                    + " ,b.[room_id]\n"
-                    + " ,r.[room_name]\n"
-                    + ",b.payment_id\n"
-                    + ",b.[room_charge]\n"
-                    + ",(eb.[count]*eb.price) as electric_money\n"
-                    + ",b.[water_money]\n"
-                    + ",b.[network_money]\n"
-                    + ",b.[cleaner_money]\n"
-                    + ",b.[water_drink]\n"
-                    + ",b.[status]\n"
-                    + ",b.[short_money]\n"
-                    + ",b.[fromDate]\n"
-                    + ",b.[toDate]\n"
-                    + "FROM [Bill] b inner join Room r on b.room_id = r.room_id\n"
-                    + "inner join ElectricBill eB on b.id = eB.bill_id"
-                    + "Where b.id = ?";
+                    + "                    ,b.[room_id]\n"
+                    + "                    ,r.[room_name]\n"
+                    + "                    ,b.payment_id\n"
+                    + "                    ,b.[room_charge]\n"
+                    + "                    ,(eb.[count]*eb.price) as electric_money\n"
+                    + "                    ,b.[water_money]\n"
+                    + "                    ,b.[network_money]\n"
+                    + "                    ,b.[cleaner_money]\n"
+                    + "                    ,b.[water_drink]\n"
+                    + "                    ,b.[status]\n"
+                    + "                    ,b.[short_money]\n"
+                    + "                    ,b.[fromDate]\n"
+                    + "                    ,b.[toDate]\n"
+                    + "                    FROM [Bill] b inner join Room r on b.room_id = r.room_id\n"
+                    + "                    inner join ElectricBill eB on b.id = eB.bill_id\n"
+                    + "                    Where b.id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, billID);
             ResultSet rs = stm.executeQuery();
@@ -145,6 +145,7 @@ public class BillDBContext extends DBContext {
             stm.setInt(6, b.getWaterDrink());
             stm.setString(7, b.getStatus());
             stm.setInt(8, b.getShortMoney());
+            stm.setInt(9, b.getId());
             stm.executeUpdate(); //INSERT UPDATE DELETE
         } catch (SQLException ex) {
             Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,6 +175,37 @@ public class BillDBContext extends DBContext {
             stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             stm.executeUpdate(); //INSERT UPDATE DELETE
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void updateElectricMonney(Bill b) {
+        String sql = "UPDATE [dbo].[Bill] \n"
+                + " SET \n"
+                + " [electric_money] = ?\n"
+                + " WHERE Bill.id = ?";
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, b.getElectricMoney());
+            stm.setInt(2, b.getId());
+            stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

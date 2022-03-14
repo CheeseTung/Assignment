@@ -48,6 +48,18 @@
         <servlet-name>searchCustomer</servlet-name>
         <servlet-class>Controller.Bill.searchCustomer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchElectric</servlet-name>
+        <servlet-class>Controller.Bill.SearchElectric</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditElectric</servlet-name>
+        <servlet-class>Controller.Bill.EditElectric</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewContract</servlet-name>
+        <servlet-class>Controller.Contract.ViewContract</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>chooseType</servlet-name>
         <url-pattern>/chooseType</url-pattern>
@@ -95,6 +107,18 @@
     <servlet-mapping>
         <servlet-name>searchCustomer</servlet-name>
         <url-pattern>/searchCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchElectric</servlet-name>
+        <url-pattern>/searchElectric</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditElectric</servlet-name>
+        <url-pattern>/editElectric</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewContract</servlet-name>
+        <url-pattern>/viewContract</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

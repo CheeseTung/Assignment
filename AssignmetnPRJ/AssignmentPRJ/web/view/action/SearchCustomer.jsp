@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <h3>Mọi người lưu ý tiền phòng sẽ phải thanh toán vào ngày cuối cùng của tháng</h3><br/>
         <c:if test="${requestScope.bill.size() > 0}">
             <table border="1px">
                 <tr>

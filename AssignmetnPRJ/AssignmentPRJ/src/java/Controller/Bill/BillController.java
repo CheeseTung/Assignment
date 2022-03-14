@@ -7,18 +7,14 @@ package Controller.Bill;
 
 import Controller.BaseAuthenticationController;
 import dal.BillDBContext;
-import dal.ElectricDBContext;
-import dal.RoomDBContext;
+import dal.PaymentDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Bill;
-import model.ElectricBill;
-import model.Room;
+import model.Payment;
 
 /**
  *
@@ -37,11 +33,9 @@ public class BillController extends BaseAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BillDBContext bDB = new BillDBContext();       
+        BillDBContext bDB = new BillDBContext();
         ArrayList<Bill> bills = bDB.getBills();
         request.setAttribute("bills", bills);
-        //Lấy price với số điện theo bill ID
-        
         
         request.getRequestDispatcher("view/action/searchAdmin.jsp").forward(request, response);
     }

@@ -29,6 +29,8 @@
         </script>
     </head>
     <body>
+        <a href="searchElectric">Update electric number</a><br/>
+        
         <c:if test="${requestScope.bills.size() > 0}">
             <table border="1px">
                 <tr>
@@ -47,7 +49,7 @@
                 <c:forEach items="${requestScope.bills}" var="b">
                     <tr>
                         <td>${b.id}</td>
-                        <td>${b.room.name}</td>
+                        <td><a href="viewContract?name=${b.room.name}">${b.room.name}</a></td>
                         <td>${b.roomCharge}</td>
                         <td>${b.electricMoney}</td> 
                         <td>${b.waterMoney}</td>
@@ -57,8 +59,7 @@
                         <td>${b.shortMoney}</td>
                         <td>${b.status}</td>
                         <td>${b.payment.totalPrice}</td>
-                        <td><a href="edit?id=${b.id}">Edit</a> 
-                            <a href="#" onclick="deleteBill(${b.id});" >Delete</a></td>
+                        <td><a href="edit?id=${b.id}">Cập nhật</a></td>                         
                     </tr>
                 </c:forEach>
             </table>

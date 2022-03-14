@@ -21,8 +21,9 @@ public class ContractDBContext extends DBContext {
 
     public Contract getContract(String roomName) {
         try {
-            String sql = "Select c.id,c.deposit,c.hire,r.room_id \n"
+            String sql = "Select c.id,c.deposit,c.hire,r.room_id,r.room_name \n"
                     + "from Contract c inner join Room r on c.room_id = r.room_id\n"
+                    +"inner join Bill b on b.room_id = r.room_id\n"
                     + "where r.room_name = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, roomName);
@@ -34,6 +35,7 @@ public class ContractDBContext extends DBContext {
                 c.setHire(rs.getDate("hire"));
                 Room r = new Room();
                 r.setId(rs.getInt("room_id"));
+                r.setName(rs.getString("room_name"));
                 c.setRoom(r);
                 return c;
             }

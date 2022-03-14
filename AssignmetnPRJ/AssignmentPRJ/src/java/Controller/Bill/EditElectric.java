@@ -7,22 +7,21 @@ package Controller.Bill;
 
 import Controller.BaseAuthenticationController;
 import dal.BillDBContext;
-import dal.PaymentDBContext;
+import dal.ElectricDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Bill;
-import model.Payment;
+import model.ElectricBill;
 
 /**
  *
  * @author chitung
  */
-public class EditBill extends BaseAuthenticationController {
+public class EditElectric extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +40,10 @@ public class EditBill extends BaseAuthenticationController {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditBill</title>");            
+            out.println("<title>Servlet EditElectric</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditBill at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditElectric at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,11 +61,11 @@ public class EditBill extends BaseAuthenticationController {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int billId = Integer.parseInt(request.getParameter("id"));
-        BillDBContext bDB = new BillDBContext();
-        Bill bill = bDB.getBill(billId);
-        request.setAttribute("bill", bill);
-        request.getRequestDispatcher("view/action/edit.jsp").forward(request, response);
+        int electricID = Integer.parseInt(request.getParameter("id"));
+        ElectricDBContext eDB = new ElectricDBContext();
+        ElectricBill eb = eDB.getElectricBill(electricID);
+        request.setAttribute("electricBill", eb);
+        request.getRequestDispatcher("view/action/editElectric.jsp").forward(request, response);
     }
 
     /**
@@ -80,28 +79,25 @@ public class EditBill extends BaseAuthenticationController {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int roomCharge = Integer.parseInt(request.getParameter("roomCharge"));
-        int waterMoney = Integer.parseInt(request.getParameter("waterMoney"));
-        int networkMoney = Integer.parseInt(request.getParameter("networkMoney"));
-        int cleanerMoney = Integer.parseInt(request.getParameter("cleanerMoney"));
-        int waterDrink = Integer.parseInt(request.getParameter("waterDrink"));
-        int shortMonet = Integer.parseInt(request.getParameter("shortMoney"));
-        String status = request.getParameter("status");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int count = Integer.parseInt(request.getParameter("count"));
         int id = Integer.parseInt(request.getParameter("id"));
+        int electricMoney = price*count;
         
+        ElectricBill eb = new ElectricBill();
+        eb.setId(id);
+        eb.setPrice(price);
+        eb.setCount(count);
+        
+        ElectricDBContext eDB = new ElectricDBContext();
+        eDB.updateElectric(eb);
+        
+        //update electric money into database
         Bill b = new Bill();
-        b.setId(id);
-        b.setRoomCharge(roomCharge);
-        b.setWaterMoney(waterMoney);
-        b.setNetworkMoney(networkMoney);
-        b.setCleanerMoney(cleanerMoney);
-        b.setWaterDrink(waterDrink);
-        b.setShortMoney(shortMonet);
-        b.setStatus(status);
-        
+        b.setElectricMoney(electricMoney);
         BillDBContext bDB = new BillDBContext();
-        bDB.updateBill(b);
-        response.sendRedirect("BillController");
+        bDB.updateElectricMonney(b);
+        response.sendRedirect("searchElectric");
     }
 
     /**
