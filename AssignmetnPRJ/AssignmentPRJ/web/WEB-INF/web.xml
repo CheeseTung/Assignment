@@ -60,6 +60,14 @@
         <servlet-name>ViewContract</servlet-name>
         <servlet-class>Controller.Contract.ViewContract</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Continue</servlet-name>
+        <servlet-class>Controller.Bill.Continue</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewContract</servlet-name>
+        <servlet-class>Controller.Contract.viewContract</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>chooseType</servlet-name>
         <url-pattern>/chooseType</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>ViewContract</servlet-name>
         <url-pattern>/viewContract</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Continue</servlet-name>
+        <url-pattern>/continue</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewContract</servlet-name>
+        <url-pattern>/contract</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -29,27 +29,30 @@
         </script>
     </head>
     <body>
-        <a href="searchElectric">Update electric number</a><br/>
-        
+        <h3>Room charge from <fmt:formatDate type="date" value="${requestScope.bi.fromDate}"></fmt:formatDate> to <fmt:formatDate type="date" value="${requestScope.bi.toDate}"></fmt:formatDate></h3><br/>
+        <form action="continue" method="POST">
+            <input type="button" value="Single closing"/>
+        </form>
+        <h4><a href="searchElectric">Update electric number of month</a></h4><br/>
         <c:if test="${requestScope.bills.size() > 0}">
             <table border="1px">
                 <tr>
-                    <td>STT</td>
-                    <td>Phòng</td>
-                    <td>Tiền phòng</td>
-                    <td>Tiền điện</td>
-                    <td>Tiền nước</td>
-                    <td>Tiền mạng</td>
-                    <td>Tiền vệ sinh</td>
-                    <td>Tiền nước uống</td>
-                    <td>Còn thiếu</td>
-                    <td>Ghi chú</td>
-                    <td>Phải nộp</td>
+                    <td>Number</td>
+                    <td>Room name</td>
+                    <td>Room charge</td>
+                    <td>Electric</td>
+                    <td>Water</td>
+                    <td>Network</td>
+                    <td>Cleaner</td>
+                    <td>Water drink</td>
+                    <td>Lack of money</td>
+                    <td>Status</td>
+                    <td>Total price</td>
                 </tr>
                 <c:forEach items="${requestScope.bills}" var="b">
                     <tr>
                         <td>${b.id}</td>
-                        <td><a href="viewContract?name=${b.room.name}">${b.room.name}</a></td>
+                        <td><a href="contract?name=${b.room.name}">${b.room.name}</a></td>
                         <td>${b.roomCharge}</td>
                         <td>${b.electricMoney}</td> 
                         <td>${b.waterMoney}</td>
@@ -59,7 +62,7 @@
                         <td>${b.shortMoney}</td>
                         <td>${b.status}</td>
                         <td>${b.payment.totalPrice}</td>
-                        <td><a href="edit?id=${b.id}">Cập nhật</a></td>                         
+                        <td><a href="edit?id=${b.id}">Edit</a></td>
                     </tr>
                 </c:forEach>
             </table>

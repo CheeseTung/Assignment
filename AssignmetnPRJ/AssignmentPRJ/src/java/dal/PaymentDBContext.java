@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Bill;
 import model.Payment;
 
 /**
@@ -41,33 +42,5 @@ public class PaymentDBContext extends DBContext {
         return null;
     }
 
-    public void updatePayment(Payment p) {
-        String sql = "UPDATE [dbo].[Payment]\n"
-                + "   SET [totalPrice] = ?\n"
-                + " WHERE id = ?";
-        PreparedStatement stm = null;
-        try {
-            stm = connection.prepareStatement(sql);
-            stm.setInt(1, p.getTotalPrice());
-            stm.setInt(2, p.getId());
-            stm.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(PaymentDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
+    
 }

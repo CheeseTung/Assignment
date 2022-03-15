@@ -149,21 +149,6 @@ public class BillDBContext extends DBContext {
             stm.executeUpdate(); //INSERT UPDATE DELETE
         } catch (SQLException ex) {
             Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
         }
     }
 
@@ -199,7 +184,7 @@ public class BillDBContext extends DBContext {
         String sql = "UPDATE [dbo].[Bill] \n"
                 + " SET \n"
                 + " [electric_money] = ?\n"
-                + " WHERE Bill.id = ?";
+                + " WHERE id = ?";
         PreparedStatement stm = null;
         try {
             stm = connection.prepareStatement(sql);
@@ -223,6 +208,26 @@ public class BillDBContext extends DBContext {
                     Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }
+    }
+
+    public void updatePayment(Bill b) {
+        String sql = "update Payment set totalPrice = (\n"
+                + "select sum(b.room_charge + b.electric_money + b.network_money + b.water_money + b.cleaner_money + b.water_drink + b.short_money)\n"
+                + "from Bill as b \n"
+                + "inner join Payment p on p.id = b.payment_id\n"
+                + "where b.id = ?\n"
+                + "group by b.id\n"
+                + ")\n"
+                + "where id = ?";
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, b.getId());
+            stm.setInt(2, b.getPayment().getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

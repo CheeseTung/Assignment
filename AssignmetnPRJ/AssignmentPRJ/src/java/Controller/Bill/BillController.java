@@ -36,7 +36,15 @@ public class BillController extends BaseAuthenticationController {
         BillDBContext bDB = new BillDBContext();
         ArrayList<Bill> bills = bDB.getBills();
         request.setAttribute("bills", bills);
-        
+        for (Bill b : bills) {
+            Payment p = new Payment();
+            p.setId(b.getPayment().getId());
+            p.setTotalPrice(b.getPayment().getTotalPrice());
+            b.setPayment(p);
+            bDB.updatePayment(b);
+        }
+        Bill b = bDB.getBill(1);
+        request.setAttribute("bi", b);
         request.getRequestDispatcher("view/action/searchAdmin.jsp").forward(request, response);
     }
 

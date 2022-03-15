@@ -94,9 +94,12 @@ public class EditElectric extends BaseAuthenticationController {
         
         //update electric money into database
         Bill b = new Bill();
+        b.setId(id);
         b.setElectricMoney(electricMoney);
+        
         BillDBContext bDB = new BillDBContext();
         bDB.updateElectricMonney(b);
+        
         response.sendRedirect("searchElectric");
     }
 

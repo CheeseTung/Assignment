@@ -17,10 +17,10 @@
         <c:if test="${requestScope.electricBills.size() gt 0}">
             <table border="1px">
                 <tr>
-                    <td>STT</td>
-                    <td>Tên phòng</td>
-                    <td>Giá/Số</td>
-                    <td>Số điện đã dùng</td>
+                    <td>Number</td>
+                    <td>Room name</td>
+                    <td>Price/1 electric number</td>
+                    <td>Electric number</td>
                 </tr>
                 <c:forEach items="${requestScope.electricBills}" var="eb">
                     <tr>
@@ -28,7 +28,7 @@
                         <td>${eb.bill.room.name}</td>
                         <td>${eb.price}</td>
                         <td>${eb.count}</td>
-                        <td><a href="editElectric?id=${eb.id}">Cập nhật</a></td>
+                        <td><a href="editElectric?id=${eb.id}">Edit</a></td>
                     </tr>
                 </c:forEach>           
             </table>

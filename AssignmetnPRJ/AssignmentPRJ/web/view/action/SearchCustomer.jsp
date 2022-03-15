@@ -14,21 +14,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h3>Mọi người lưu ý tiền phòng sẽ phải thanh toán vào ngày cuối cùng của tháng</h3><br/>
+        <h3>Please note that the room fee will be paid on the last day of the month</h3><br/>
         <c:if test="${requestScope.bill.size() > 0}">
             <table border="1px">
                 <tr>
-                    <td>STT</td>
-                    <td>Phòng</td>
-                    <td>Tiền phòng</td>
-                    <td>Tiền điện</td>
-                    <td>Tiền nước</td>
-                    <td>Tiền mạng</td>
-                    <td>Tiền vệ sinh</td>
-                    <td>Tiền nước uống</td>
-                    <td>Còn thiếu</td>
-                    <td>Ghi chú</td>
-                    <td>Phải nộp</td>
+                    <td>Number</td>
+                    <td>Room name</td>
+                    <td>Room charge</td>
+                    <td>Electric</td>
+                    <td>Water</td>
+                    <td>Network</td>
+                    <td>Cleaner</td>
+                    <td>Water drink</td>
+                    <td>Lack of money</td>
+                    <td>Status</td>
+                    <td>Total price</td>
                 </tr>
                 <c:forEach items="${requestScope.bill}" var="b">
                     <tr>

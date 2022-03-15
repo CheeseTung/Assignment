@@ -12,11 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h3>Hợp đồng phòng ${requestScope.contract.room.name} </h3>
+        <h3>Contract room ${requestScope.contract.room.name} </h3>
         <br/>
-        Tên phòng: ${requestScope.contract.room.name}<br/>
-        Tiền cọc: ${requestScope.contract.deposit}<br/>
-        Ngày cọc: ${requestScope.contract.hire}<br/>
+        Room name: ${requestScope.contract.room.name}<br/>
+        Deposit: ${requestScope.contract.deposit}<br/>
+        Hire: ${requestScope.contract.hire}<br/>
         <br/>
         <a href="BillController" >View bill</a>
     </body>

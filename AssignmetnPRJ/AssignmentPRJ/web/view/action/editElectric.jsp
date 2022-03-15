@@ -13,10 +13,10 @@
     </head>
     <body>
         <form action="editElectric" method="POST">
-            STT: ${requestScope.electricBill.id}<input type="hidden" name="id" value="${requestScope.electricBill.id}" />
-            Tên phòng: ${requestScope.electricBill.bill.room.name}<br/>
-            Giá/Số: ${requestScope.electricBill.price} <input type="hidden" name="price" value="${requestScope.electricBill.price}"/><br/>
-            Số điện: <input type="text" name="count" value="${requestScope.electricBill.count}" /><br/>
+            Number: ${requestScope.electricBill.id}<input type="hidden" name="id" value="${requestScope.electricBill.id}" />
+            Room name: ${requestScope.electricBill.bill.room.name}<br/>
+            Price/1 electric number: ${requestScope.electricBill.price} <input type="hidden" name="price" value="${requestScope.electricBill.price}"/><br/>
+            Electric number: <input type="text" name="count" value="${requestScope.electricBill.count}" /><br/>
             <input type="submit" value="Save" />
         </form>
     </body>
