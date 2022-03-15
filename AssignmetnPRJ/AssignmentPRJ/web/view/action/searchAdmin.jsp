@@ -30,7 +30,7 @@
     </head>
     <body>
         <h3>Room charge from <fmt:formatDate type="date" value="${requestScope.bi.fromDate}"></fmt:formatDate> to <fmt:formatDate type="date" value="${requestScope.bi.toDate}"></fmt:formatDate></h3><br/>
-        <form action="continue" method="POST">
+        <form action="continue" method="GET">
             <input type="button" value="Single closing"/>
         </form>
         <h4><a href="searchElectric">Update electric number of month</a></h4><br/>

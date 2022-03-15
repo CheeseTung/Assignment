@@ -5,18 +5,23 @@
  */
 package Controller.Bill;
 
+import Controller.BaseAuthenticationController;
+import dal.BillDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Bill;
 
 /**
  *
  * @author chitung
  */
-public class Continue extends HttpServlet {
+public class Continue extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,19 +34,17 @@ public class Continue extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Continue</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Continue at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        BillDBContext bDB = new BillDBContext();
+        ArrayList<Bill> bills = bDB.getBills();
+        
+        for (Bill b : bills) {
+            Bill bill = new Bill();
+            bill.setFromDate(b.getToDate());
+            bill.setToDate(Date.valueOf(b.getToDate().toLocalDate().plusMonths(3)));
+            bill.setId(b.getId());
+            bDB.updateDate(bill);
         }
+        response.sendRedirect("BillController");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,7 +57,7 @@ public class Continue extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -68,7 +71,7 @@ public class Continue extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

@@ -5,6 +5,7 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -225,6 +226,23 @@ public class BillDBContext extends DBContext {
             stm = connection.prepareStatement(sql);
             stm.setInt(1, b.getId());
             stm.setInt(2, b.getPayment().getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateDate(Bill b) {
+        String sql = "UPDATE [Bill]\n"
+                + "   SET\n"
+                + "      [fromDate] = ?\n"
+                + "      ,[toDate] = ?\n"
+                + " WHERE id = ?";
+        try {
+            PreparedStatement stm = connection.prepareCall(sql);
+            stm.setDate(1, b.getFromDate());
+            stm.setDate(2, b.getToDate());
+            stm.setInt(3, b.getId());
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);

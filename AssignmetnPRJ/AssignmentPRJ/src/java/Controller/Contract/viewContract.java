@@ -38,7 +38,7 @@ public class viewContract extends BaseAuthenticationController {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet viewContract</title>");            
+            out.println("<title>Servlet viewContract</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet viewContract at " + request.getContextPath() + "</h1>");
@@ -59,7 +59,7 @@ public class viewContract extends BaseAuthenticationController {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String roomName = request.getParameter("name");
+        String roomName = request.getParameter("name");
         ContractDBContext cDB = new ContractDBContext();
         Contract contract = cDB.getContract(roomName);
         request.setAttribute("contract", contract);
