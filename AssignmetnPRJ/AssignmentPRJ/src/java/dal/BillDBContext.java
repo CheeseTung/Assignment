@@ -248,4 +248,39 @@ public class BillDBContext extends DBContext {
             Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public Bill getBillByPayment(int paymentID) {
+        String sql = "select b.id,b.fromDate,b.toDate,r.room_name,b.room_charge,b.electric_money,b.water_money,b.network_money,b.cleaner_money,b.water_drink,b.short_money,p.totalPrice\n"
+                + "                from Bill b inner join Room r on b.room_id = r.room_id\n"
+                + "				inner join Payment p on b.payment_id = p.id\n"
+                + "				where payment_id = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, paymentID);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Bill b = new Bill();
+                b.setId(rs.getInt("id"));
+                b.setFromDate(rs.getDate("fromDate"));
+                b.setToDate(rs.getDate("toDate"));
+                Room r = new Room();
+                r.setName(rs.getString("room_name"));
+                b.setRoom(r);
+                b.setRoomCharge(rs.getInt("room_charge"));
+                b.setElectricMoney(rs.getInt("electric_money"));
+                b.setWaterMoney(rs.getInt("water_money"));
+                b.setNetworkMoney(rs.getInt("network_money"));
+                b.setCleanerMoney(rs.getInt("cleaner_money"));
+                b.setWaterDrink(rs.getInt("water_drink"));
+                b.setShortMoney(rs.getInt("short_money"));
+                Payment p = new Payment();
+                p.setTotalPrice(rs.getInt("totalPrice"));
+                b.setPayment(p);
+                return b;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BillDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

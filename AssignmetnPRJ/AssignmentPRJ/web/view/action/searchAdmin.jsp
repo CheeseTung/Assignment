@@ -18,12 +18,12 @@
                 document.getElementById("searchForm").submit();
             }
 
-            function deleteBill(id)
+            function submitBill(id)
             {
                 var result = confirm("Are you sure?");
                 if (result)
                 {
-                    window.location.href = "delete?id=" + id;
+                    window.location.href = "submit?paymentID=" + id;
                 }
             }
         </script>
@@ -31,7 +31,11 @@
     <body>
         <h3>Room charge from <fmt:formatDate type="date" value="${requestScope.bi.fromDate}"></fmt:formatDate> to <fmt:formatDate type="date" value="${requestScope.bi.toDate}"></fmt:formatDate></h3><br/>
         <form action="continue" method="GET">
-            <input type="button" value="Single closing"/>
+            <input type="submit" value="Single closing"/>
+        </form>
+        <form action="viewHistory" method="GET">
+            <h3>Search room bill history</h3><br/>
+            From date <input type="date" name="fromDate" /> to date <input type="date" name="toDate" /><input type="submit" value="Search" />
         </form>
         <h4><a href="searchElectric">Update electric number of month</a></h4><br/>
         <c:if test="${requestScope.bills.size() > 0}">
@@ -63,6 +67,7 @@
                         <td>${b.status}</td>
                         <td>${b.payment.totalPrice}</td>
                         <td><a href="edit?id=${b.id}">Edit</a></td>
+                        <td><a href="#" onclick="submitBill(${b.payment.id});" >Submit</a></td>
                     </tr>
                 </c:forEach>
             </table>

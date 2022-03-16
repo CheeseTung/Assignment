@@ -7,12 +7,9 @@ package Controller.Bill;
 
 import Controller.BaseAuthenticationController;
 import dal.BillDBContext;
-import dal.PaymentDBContext;
 import dal.PaymentHistoryDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +22,7 @@ import model.PaymentHistory;
  *
  * @author chitung
  */
-public class Continue extends BaseAuthenticationController {
+public class SubmitBill extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,15 +35,32 @@ public class Continue extends BaseAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int paymentID = Integer.parseInt(request.getParameter("paymentID"));
         BillDBContext bDB = new BillDBContext();
-        ArrayList<Bill> bills = bDB.getBills();
+        Bill bill = bDB.getBillByPayment(paymentID);
         
-        for (Bill b : bills) {
-            b.setFromDate(b.getToDate());
-            b.setToDate(Date.valueOf(b.getToDate().toLocalDate().plusMonths(3)));
-            b.setId(b.getId());
-            bDB.updateDate(b);
-        }
+        PaymentHistory ph = new PaymentHistory();
+        Payment p = new Payment();
+        p.setId(paymentID);
+        ph.setPayment(p);
+        
+        
+        bill.setId(bill.getId());       
+        ph.setBill(bill);
+        ph.setFromDate(bill.getFromDate());
+        ph.setToDate(bill.getToDate());
+        ph.setRoomName(bill.getRoom().getName());
+        ph.setRoomCharge(bill.getRoomCharge());
+        ph.setElectricMoney(bill.getElectricMoney());
+        ph.setWaterMoney(bill.getWaterMoney());
+        ph.setNetworkMoney(bill.getNetworkMoney());
+        ph.setCleanerMoney(bill.getCleanerMoney());
+        ph.setWaterDrink(bill.getWaterDrink());
+        ph.setShortMoney(bill.getShortMoney());
+        ph.setTotalPrice(bill.getPayment().getTotalPrice());
+        
+        PaymentHistoryDBContext phDB = new PaymentHistoryDBContext();
+        phDB.insertPaymentHistory(ph);
         response.sendRedirect("BillController");
     }
 

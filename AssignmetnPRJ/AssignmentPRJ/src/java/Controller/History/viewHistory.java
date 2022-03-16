@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Bill;
+package Controller.History;
 
 import Controller.BaseAuthenticationController;
-import dal.BillDBContext;
-import dal.PaymentDBContext;
 import dal.PaymentHistoryDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,15 +15,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Bill;
-import model.Payment;
 import model.PaymentHistory;
 
 /**
  *
  * @author chitung
  */
-public class Continue extends BaseAuthenticationController {
+public class viewHistory extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,16 +34,19 @@ public class Continue extends BaseAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BillDBContext bDB = new BillDBContext();
-        ArrayList<Bill> bills = bDB.getBills();
-        
-        for (Bill b : bills) {
-            b.setFromDate(b.getToDate());
-            b.setToDate(Date.valueOf(b.getToDate().toLocalDate().plusMonths(3)));
-            b.setId(b.getId());
-            bDB.updateDate(b);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet viewHistory</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet viewHistory at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        response.sendRedirect("BillController");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +61,15 @@ public class Continue extends BaseAuthenticationController {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String raw_fromDate = request.getParameter("fromDate");
+        String raw_toDate =  request.getParameter("toDate");
+        Date fromDate = Date.valueOf(raw_fromDate);
+        Date toDate = Date.valueOf(raw_toDate);
+        
+        PaymentHistoryDBContext phDB = new PaymentHistoryDBContext();
+        ArrayList<PaymentHistory> ph = phDB.getPaymentHistory(fromDate, toDate);
+        request.setAttribute("ph", ph);
+        request.getRequestDispatcher("view/history/viewHistory.jsp").forward(request, response);
     }
 
     /**

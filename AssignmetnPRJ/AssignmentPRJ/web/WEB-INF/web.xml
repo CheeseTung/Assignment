@@ -68,6 +68,14 @@
         <servlet-name>viewContract</servlet-name>
         <servlet-class>Controller.Contract.viewContract</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubmitBill</servlet-name>
+        <servlet-class>Controller.Bill.SubmitBill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewHistory</servlet-name>
+        <servlet-class>Controller.History.viewHistory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>chooseType</servlet-name>
         <url-pattern>/chooseType</url-pattern>
@@ -135,6 +143,14 @@
     <servlet-mapping>
         <servlet-name>viewContract</servlet-name>
         <url-pattern>/contract</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitBill</servlet-name>
+        <url-pattern>/submit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewHistory</servlet-name>
+        <url-pattern>/viewHistory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
