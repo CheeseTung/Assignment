@@ -12,10 +12,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="../css/pagger.css" rel="stylesheet" type="text/css"/>
+        <script src="../js/pagger.js" type="text/javascript"></script>
     </head>
     <body>
         <h3>Room bill from date ${requestScope.fromDate} to ${requestScope.toDate}</h3>
-         <c:if test="${requestScope.ph.size() > 0}">
+        <c:if test="${requestScope.ph.size() > 0}">
+             <div id="paggertop" class="container"> </div>
             <table border="1px">
                 <tr>
                     <td>Room name</td>
@@ -42,6 +45,11 @@
                     </tr>
                 </c:forEach>
             </table>
+            <div id="paggerbot" class="container"> </div>
+            <script>
+                        pagger('paggertop',${requestScope.pageindex},${requestScope.pagesize}, 2);
+                        pagger('paggerbot',${requestScope.pageindex},${requestScope.pagesize}, 2);
+            </script>
         </c:if>
         <c:if test="${requestScope.bills.size() eq 0}">
             No record to display

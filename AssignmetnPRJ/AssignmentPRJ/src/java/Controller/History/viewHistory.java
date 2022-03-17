@@ -38,8 +38,7 @@ public class viewHistory extends BaseAuthenticationController {
         String raw_toDate =  request.getParameter("toDate");
         Date fromDate = Date.valueOf(raw_fromDate);
         Date toDate = Date.valueOf(raw_toDate);
-        request.setAttribute("fromDate", fromDate);
-        request.setAttribute("toDate", toDate);
+        
         PaymentHistoryDBContext phDB = new PaymentHistoryDBContext();
         ArrayList<PaymentHistory> ph = phDB.getPaymentHistory(fromDate, toDate);
         request.setAttribute("ph", ph);
