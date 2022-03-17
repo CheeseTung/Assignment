@@ -95,20 +95,20 @@ public class PaymentHistoryDBContext extends DBContext {
 
     public ArrayList<PaymentHistory> getPaymentHistory(Date fromDate, Date toDate) {
         ArrayList<PaymentHistory> paymentHistory = new ArrayList<>();
-        String sql = "SELECT [room_name]\n"
-                + "      ,[roomCharge]\n"
-                + "      ,[electricMoney]\n"
-                + "      ,[waterMoney]\n"
-                + "      ,[networkMoney]\n"
-                + "      ,[cleanerMoney]\n"
-                + "      ,[waterDrink]\n"
-                + "      ,[shortMoney]\n"
-                + "      ,[totalPrice]\n"
-                + "      ,[fromDate]\n"
-                + "      ,[toDate]\n"
-                + "  FROM [History]\n"
-                + "  Where fromDate >= ? And toDate <= ?";
         try {
+            String sql = "SELECT [room_name]\n"
+                    + "      ,[roomCharge]\n"
+                    + "      ,[electricMoney]\n"
+                    + "      ,[waterMoney]\n"
+                    + "      ,[networkMoney]\n"
+                    + "      ,[cleanerMoney]\n"
+                    + "      ,[waterDrink]\n"
+                    + "      ,[shortMoney]\n"
+                    + "      ,[totalPrice]\n"
+                    + "      ,[fromDate]\n"
+                    + "      ,[toDate]\n"
+                    + "  FROM [History]\n"
+                    + "  Where fromDate >= ? And toDate <= ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setDate(1, fromDate);
             stm.setDate(2, toDate);
