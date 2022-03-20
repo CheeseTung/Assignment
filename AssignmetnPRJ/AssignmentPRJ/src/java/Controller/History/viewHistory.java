@@ -35,14 +35,12 @@ public class viewHistory extends BaseAuthenticationController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String raw_fromDate = request.getParameter("fromDate");
-        String raw_toDate =  request.getParameter("toDate");
-        Date fromDate = Date.valueOf(raw_fromDate);
-        Date toDate = Date.valueOf(raw_toDate);
-        
+        String raw_toDate = request.getParameter("toDate");
+
         PaymentHistoryDBContext phDB = new PaymentHistoryDBContext();
-        ArrayList<PaymentHistory> ph = phDB.getPaymentHistory(fromDate, toDate);
+        ArrayList<PaymentHistory> ph = phDB.getPaymentHistory(raw_fromDate, raw_toDate);
         request.setAttribute("ph", ph);
-        
+
         request.getRequestDispatcher("view/action/history.jsp").forward(request, response);
     }
 

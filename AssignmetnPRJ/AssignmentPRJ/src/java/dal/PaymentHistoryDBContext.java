@@ -93,7 +93,7 @@ public class PaymentHistoryDBContext extends DBContext {
         }
     }
 
-    public ArrayList<PaymentHistory> getPaymentHistory(Date fromDate, Date toDate) {
+    public ArrayList<PaymentHistory> getPaymentHistory(String fromDate, String toDate) {
         ArrayList<PaymentHistory> paymentHistory = new ArrayList<>();
         try {
             String sql = "SELECT [room_name]\n"
@@ -110,8 +110,8 @@ public class PaymentHistoryDBContext extends DBContext {
                     + "  FROM [History]\n"
                     + "  Where fromDate >= ? And toDate <= ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setDate(1, fromDate);
-            stm.setDate(2, toDate);
+            stm.setString(1, fromDate);
+            stm.setString(2, toDate);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 PaymentHistory ph = new PaymentHistory();

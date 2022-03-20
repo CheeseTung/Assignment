@@ -16,8 +16,13 @@
         <script src="../js/pagger.js" type="text/javascript"></script>
     </head>
     <body>
-        <h3>Room bill from date ${requestScope.fromDate} to ${requestScope.toDate}</h3>
+        <form action="viewHistory" method="POST">
+            <h3>Search room bill history</h3><br/>
+            From date <input type="date" name="fromDate" /> to date <input type="date" name="toDate" /><input type="submit" value="Search" />
+        </form>
         <c:if test="${requestScope.ph.size() > 0}">
+        <h3>Room bill from date ${requestScope.fromDate} to ${requestScope.toDate}</h3>
+        
              <div id="paggertop" class="container"> </div>
             <table border="1px">
                 <tr>

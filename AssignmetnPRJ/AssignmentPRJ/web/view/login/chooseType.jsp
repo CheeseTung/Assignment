@@ -65,7 +65,7 @@
                     <div class="col-lg-8">
                         <h2>Managing the payment of the accommodation</h2>
                         <h3>Login for admin</h3>
-                        <a href="login" style="" >Sign in - Admin</a>
+                        <a href="login">Sign in - Admin</a>
                     </div>
                 </div>
             </div>
