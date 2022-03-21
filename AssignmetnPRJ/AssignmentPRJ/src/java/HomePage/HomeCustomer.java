@@ -5,6 +5,7 @@
  */
 package HomePage;
 
+import Controller.BaseLoginCustomer;
 import dal.NotificationDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,13 +13,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Notification;
+import model.customerAccount;
 
 /**
  *
  * @author chitung
  */
-public class HomeCustomer extends HttpServlet {
+public class HomeCustomer extends BaseLoginCustomer {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,9 +34,9 @@ public class HomeCustomer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        NotificationDBContext nDB = new NotificationDBContext();
-        Notification notification = nDB.getNotification();
-        request.setAttribute("notification", notification);
+        HttpSession session = request.getSession();
+        customerAccount customerAccount = (customerAccount) session.getAttribute("customerAccount");
+        request.setAttribute("customerAccount", customerAccount);
         request.getRequestDispatcher("view/home/homeCustomer.jsp").forward(request, response);
     }
 
@@ -47,7 +50,7 @@ public class HomeCustomer extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -61,7 +64,7 @@ public class HomeCustomer extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

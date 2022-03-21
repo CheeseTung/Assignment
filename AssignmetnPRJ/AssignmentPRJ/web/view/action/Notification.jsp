@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
 
         <meta charset="utf-8">
@@ -10,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Update electric number</title>
+        <title>Customer - Notification</title>
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,7 +18,6 @@
 
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 
     </head>
 
@@ -37,7 +34,7 @@
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">Motel Admin <sup>Hi</sup></div>
+                    <div class="sidebar-brand-text mx-3">Motel Customer <sup></sup></div>
                 </a>
 
                 <!-- Divider -->
@@ -45,52 +42,25 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="HomeAdmin">
+                    <a class="nav-link" href="HomeCustomer">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Home</span></a>
                 </li>
 
-
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Action
-                </div>
-
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                       aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-fw fa-folder"></i>
-                        <span>Pages</span>
-                    </a>
-                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Login Screens:</h6>
-                            <a class="collapse-item" href="signCustomer">Register</a>
-                            <div class="collapse-divider"></div>
-                        </div>
-                    </div>
-                </li>
-
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
-                    <a class="nav-link" href="SetNotification">
+                    <a class="nav-link" href="notification">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Set notification</span></a>
+                        <span>Notification</span></a>
                 </li>
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
-                    <a class="nav-link" href="BillController">
+                    <a class="nav-link" href="searchCustomer">
                         <i class="fas fa-fw fa-table"></i>
                         <span>View bill</span></a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="viewHistory">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Search history bill</span></a>
-                </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
@@ -120,7 +90,7 @@
                         <!-- Topbar Search -->
                         <form
                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            Welcome VanNT. Let's update something!
+                            Please check notification everyday!
                         </form>
 
                         <!-- Topbar Navbar -->
@@ -236,9 +206,9 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Van NT</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">${requestScope.customerAccount.displayname}</span>
                                     <img class="img-profile rounded-circle"
-                                         src="img/258777676_2273314462822258_722650823768781528_n.svg">
+                                         src="images/undraw_profile_3.svg">
 
                                 </a>
                                 <!-- Dropdown - User Information -->
@@ -257,7 +227,7 @@
                                         Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" href="chooseType" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
@@ -269,58 +239,12 @@
                     </nav>
                     <!-- End of Topbar -->
 
-
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Update electric money</h1>
-                        <!-- DataTales Example -->
-                        <div class="card shadow mb-4">
-                            <c:if test="${requestScope.electricBills.size() gt 0}">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Number</th>
-                                                    <th>Room name</th>
-                                                    <th>Price/1 electric number</th>
-                                                    <th>Electric number</th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Number</th>
-                                                    <th>Room name</th>
-                                                    <th>Price/1 electric number</th>
-                                                    <th>Electric number</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-                                            <c:forEach items="${requestScope.electricBills}" var="eb">
-                                                <tr>
-                                                    <td>${eb.id}</td>
-                                                    <td>${eb.bill.room.name}</td>
-                                                    <td>${eb.price}</td>
-                                                    <td>${eb.count}</td>
-                                                    <td><a href="editElectric?id=${eb.id}">Edit</a></td>
-                                                </tr>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                        <a href="BillController" style=" background-color: whitesmoke; /* màu của Quản trị mạng ^^ */
-                                           border: solid;
-                                           color: black;
-                                           padding: 10px 15px;
-                                           text-align: center;
-                                           text-decoration: none;
-                                           display: inline-block;
-                                           font-size: 16px;">Done</a>
-                                    </div>
-                                </div>
-                            </c:if>
-                        </div>
+                        <h1 class="h3 mb-4 text-gray-800">Notification</h1><br/>
+                        <div style="background: #ebf6e0; border-radius: 2px; border: 1px solid #b3dc82; box-sizing: border-box; float: none; margin: 0px auto; outline: 0px; padding: 15px 20px; vertical-align: baseline; color: #5f9025; font-family: arial, sans-serif; font-size: 20px;">${requestScope.notification.alert}</div>
 
                     </div>
                     <!-- /.container-fluid -->
@@ -357,7 +281,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span aria-hidden="true">�</span>
                         </button>
                     </div>
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -378,13 +302,6 @@
 
         <!-- Custom scripts for all pages-->
         <script src="js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/datatables-demo.js"></script>
 
     </body>
 

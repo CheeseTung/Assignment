@@ -258,7 +258,7 @@
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">Van NT</span>
                                     <img class="img-profile rounded-circle"
-                                         src="img/258777676_2273314462822258_722650823768781528_n.svg">
+                                         src="images/undraw_profile_3.svg">
 
                                 </a>
                                 <!-- Dropdown - User Information -->
@@ -277,7 +277,7 @@
                                         Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" href="chooseType"  data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>

@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Scrolling Nav - Start Bootstrap Template</title>
+        <title>Tỵ Hà Motel</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
@@ -65,7 +65,14 @@
                     <div class="col-lg-8">
                         <h2>Managing the payment of the accommodation</h2>
                         <h3>Login for admin</h3>
-                        <a href="login">Sign in - Admin</a>
+                        <a href="login" style=" background-color: whitesmoke; /* màu của Quản trị mạng ^^ */
+                                           border: solid;
+                                           color: black;
+                                           padding: 10px 15px;
+                                           text-align: center;
+                                           text-decoration: none;
+                                           display: inline-block;
+                                           font-size: 16px;">Sign in - Admin</a>
                     </div>
                 </div>
             </div>
@@ -77,7 +84,14 @@
                     <div class="col-lg-8">
                         <h2>Managing the payment of the accommodation</h2>
                         <h3>Login for customer</h3>
-                        <a href="loginCustomer">Sign in - Customer</a>
+                        <a href="loginCustomer" style=" background-color: whitesmoke; /* màu của Quản trị mạng ^^ */
+                                           border: solid;
+                                           color: black;
+                                           padding: 10px 15px;
+                                           text-align: center;
+                                           text-decoration: none;
+                                           display: inline-block;
+                                           font-size: 16px;">Sign in - Customer</a>
                     </div>
                 </div>
             </div>

@@ -134,4 +134,19 @@ public class PaymentHistoryDBContext extends DBContext {
         return paymentHistory;
     }
 
+    public int count(String fromDate, String toDate) {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM History WHERE fromDate >= ? And toDate <= ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, fromDate);
+            stm.setString(2, toDate);
+            ResultSet rs = stm.executeQuery();        
+            if (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PaymentHistoryDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
 }

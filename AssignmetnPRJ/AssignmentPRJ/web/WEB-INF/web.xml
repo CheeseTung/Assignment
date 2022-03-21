@@ -76,6 +76,10 @@
         <servlet-name>viewHistory</servlet-name>
         <servlet-class>Controller.History.viewHistory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Notification</servlet-name>
+        <servlet-class>Controller.Notification</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>chooseType</servlet-name>
         <url-pattern>/chooseType</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>viewHistory</servlet-name>
         <url-pattern>/viewHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Notification</servlet-name>
+        <url-pattern>/notification</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

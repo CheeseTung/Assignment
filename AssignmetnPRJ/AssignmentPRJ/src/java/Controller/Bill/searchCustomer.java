@@ -14,7 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Bill;
+import model.customerAccount;
 
 /**
  *
@@ -33,6 +35,9 @@ public class searchCustomer extends BaseLoginCustomer {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        customerAccount customerAccount = (customerAccount) session.getAttribute("customerAccount");
+        request.setAttribute("customerAccount", customerAccount);
         BillDBContext bDB = new BillDBContext();
         ArrayList<Bill> bill = bDB.getBills();
         request.setAttribute("bill", bill);
